@@ -1,7 +1,7 @@
-User-Tenant Test TestData Generator
+User-Tenant TestData Generator
 =================================================
 
-The purpose of this app is to generate the test script/database for [User - Tenant project] (https://github.com/Cron-J/User-Tenant) for performance testing.
+The purpose of this app is to generate the test script/database for [User-Tenant project] (https://github.com/Cron-J/User-Tenant) for performance testing.
 
 
 ### Install an app
