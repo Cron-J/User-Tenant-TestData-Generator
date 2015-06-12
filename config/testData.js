@@ -6,6 +6,8 @@ module.exports = {
         lastName: "Admin",
         password: "anusha",
         scope: "Admin",
+        createdBy: "Self",
+        updatedBy: "Self",
         isActive: true
     },
     tenantAdmin: {        
@@ -14,6 +16,8 @@ module.exports = {
         lastName: "Admin",
         password: "anusha",
         scope: "Tenant-Admin",
+        createdBy: "Self",
+        updatedBy: "Self",
         isActive: true
     },
     tenant : {
@@ -25,7 +29,9 @@ module.exports = {
         firstName: "Prem",
         lastName: "Karan",
         password: "anusha",
-        scope: "User"
+        scope: "User",
+        createdBy: "Self",
+        updatedBy: "Self"
     }
 }
     

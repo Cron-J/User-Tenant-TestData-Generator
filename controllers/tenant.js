@@ -1,6 +1,8 @@
 var Boom = require('boom'), // HTTP Errors
     Tenant = require('../models/tenant').Tenant,
-    tenant = require('../config/testData').tenant,
+    tenantData = require('../config/testData').tenant,
+    Crypto = require('../Utility/cryptolib'),
+    Config = require('../config/config'),
     Counter = require('../models/counter').Counter,
     async = require('async');
 /** @module Controller for Tenant */
@@ -12,14 +14,14 @@ exports.CreateTenantData = {
         var i = 0;
         async.forever(function(callback) {
             counterValue(function(error, result) {
-                var temp = JSON.parse(JSON.stringify(tenant));
+                var temp = JSON.parse(JSON.stringify(tenantData));
                 temp.name = result;
-                var tenantData = new Tenant(temp);
-                tenantData.save(function(err, result) {
+                var tenant = new Tenant(temp);
+                tenant.save(function(err, result) {
                     if (err) console.log(err);
                     ++i;
                     if (i === 1000) {
-                        console.log('Record Successfully created');
+                        console.log('Tenanats Records Successfully Created');
                         return reply("Record Successfully created");
                     }
                     callback();
@@ -30,7 +32,7 @@ exports.CreateTenantData = {
             if (err) {
                 console.log(err);
             } else {
-                console.log('Record Successfully created');
+                console.log('Tenanats Records Successfully Created');
             }
         });
 

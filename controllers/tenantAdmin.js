@@ -2,6 +2,8 @@ var Boom = require('boom'),
     User = require('../models/user').User,
     Tenant = require('../models/tenant').Tenant,
     Counter = require('../models/counter').Counter,
+    Crypto = require('../Utility/cryptolib'),
+    Config = require('../config/config'),
     async = require('async'),
     tenantAdminData = require('../config/testData').tenantAdmin;
 
@@ -19,12 +21,13 @@ exports.CreateTenantAdmin = {
                     counterValue(function(error, result) {
                         var temp = JSON.parse(JSON.stringify(tenantAdminData));
                         temp.username = result;
+                        temp.password = Crypto.encrypt(temp.password);
                         var user = new User(temp);
-                        user.save(function(err, user) {
+                        User.saveUser( user, function(err, user) {
                             if (!err) {
                                 ++i;
                                 if (i == 1000) {
-                                    console.log('Record Successfully created');
+                                    console.log('Tenant-Admins Records Successfully Created');
                                     return reply("Record Successfully created");
                                 }
                                 callback();
@@ -38,7 +41,7 @@ exports.CreateTenantAdmin = {
                     if (err) {
                         console.log(err);
                     } else {
-                        console.log('Tenant-Admins records Successfully created');
+                        console.log('Tenant-Admins Records Successfully Created');
 
                     }
                 });
@@ -69,7 +72,7 @@ var counterValue = function(callback) {
                     'counterValue': 0
                 });
                 counter.save(function(err, res) {
-                    var username = "bbb" + res.counterValue;
+                    var username = "tAdmin" + res.counterValue;
                     callback(err, username);
                 });
             } else {
@@ -78,7 +81,7 @@ var counterValue = function(callback) {
                     fieldName: 'username'
                 }, function(err, res) {
                     if (res) {
-                        var username = "bbb" + res.counterValue;
+                        var username = "tAdmin" + res.counterValue;
                         callback(err, username);
                     }
                 })

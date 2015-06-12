@@ -1,5 +1,7 @@
 var Boom = require('boom'),
     User = require('../models/user').User,
+    Crypto = require('../Utility/cryptolib'),
+    Config = require('../config/config'),
     async = require('async'),
     adminData = require('../config/testData').admin;
 
@@ -12,8 +14,9 @@ exports.createAdmin = {
                 reply(Boom.forbidden("Admin already exist"));
             }
             else{
+                adminData.password = Crypto.encrypt(adminData.password);
                 var user = new User(adminData);
-                user.save(function(err, user) {
+                 User.saveUser( user, function(err, user) {
                     console.log(user);
                     console.log('****************');
                     console.log(err);

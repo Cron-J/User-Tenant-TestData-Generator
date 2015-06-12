@@ -2,6 +2,8 @@ var Boom = require('boom'),
     User = require('../models/user').User,
     Tenant = require('../models/tenant').Tenant,
     Counter = require('../models/counter').Counter,
+    Crypto = require('../Utility/cryptolib'),
+    Config = require('../config/config'),
     async = require('async'),
     userData = require('../config/testData').user;
 
@@ -19,12 +21,13 @@ exports.CreateUser = {
                     counterValue(function(error, result) {
                         var temp = JSON.parse(JSON.stringify(userData));
                         temp.username = result;
+                        temp.password = Crypto.encrypt(temp.password);
                         var user = new User(temp);
-                        user.save(function(err, user) {
+                        User.saveUser( user, function(err, user) {
                             if (!err) {
                                 ++i;
                                 if (i == 9000) {
-                                    console.log('Users Record Successfully created');
+                                    console.log('Users Record Successfully Created');
                                     return reply("Record Successfully created");
                                 }
                                 callback();
@@ -38,7 +41,7 @@ exports.CreateUser = {
                     if (err) {
                         console.log(err);
                     } else {
-                        console.log('User Record Successfully created');
+                        console.log('User Record Successfully Created');
 
                     }
                 });
@@ -69,7 +72,7 @@ var counterValue = function(callback) {
                     'counterValue': 0
                 });
                 counter.save(function(err, res) {
-                    var tenantId = "aaa" + res.counterValue;
+                    var tenantId = "user" + res.counterValue;
                     callback(err, tenantId);
                 });
             } else {
@@ -78,7 +81,7 @@ var counterValue = function(callback) {
                     fieldName: 'username'
                 }, function(err, res) {
                     if (res) {
-                        var tenantId = "aaa" + res.counterValue;
+                        var tenantId = "user" + res.counterValue;
                         callback(err, tenantId);
                     }
                 })
