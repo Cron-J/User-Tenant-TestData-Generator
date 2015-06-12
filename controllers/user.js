@@ -21,6 +21,8 @@ exports.CreateUser = {
                     counterValue(function(error, result) {
                         var temp = JSON.parse(JSON.stringify(userData));
                         temp.username = result;
+                        if(i < 10) 
+                            temp.isActive = true;
                         temp.password = Crypto.encrypt(temp.password);
                         var user = new User(temp);
                         User.saveUser( user, function(err, user) {

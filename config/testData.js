@@ -31,7 +31,8 @@ module.exports = {
         password: "anusha",
         scope: "User",
         createdBy: "Self",
-        updatedBy: "Self"
+        updatedBy: "Self",
+        isActive: false
     }
 }
     
