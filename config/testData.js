@@ -19,7 +19,6 @@ module.exports = {
         scope: "Tenant-Admin",
         createdBy: "Self",
         updatedBy: "Self",
-        isEmailVerified: false,
         isActive: true
     },
     tenant : {
@@ -33,9 +32,7 @@ module.exports = {
         password: "anusha",
         scope: "User",
         createdBy: "Self",
-        updatedBy: "Self",
-        isEmailVerified: false,
-        isActive: false
+        updatedBy: "Self"
     }
 }
     
