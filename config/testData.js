@@ -8,6 +8,7 @@ module.exports = {
         scope: "Admin",
         createdBy: "Self",
         updatedBy: "Self",
+        isEmailVerified: true,
         isActive: true
     },
     tenantAdmin: {        
@@ -18,10 +19,11 @@ module.exports = {
         scope: "Tenant-Admin",
         createdBy: "Self",
         updatedBy: "Self",
+        isEmailVerified: false,
         isActive: true
     },
     tenant : {
-            name: "Vjoin", 
+            name: "Siemens", 
             description: "description about tenant"
     },
     user: {        
@@ -32,6 +34,7 @@ module.exports = {
         scope: "User",
         createdBy: "Self",
         updatedBy: "Self",
+        isEmailVerified: false,
         isActive: false
     }
 }
