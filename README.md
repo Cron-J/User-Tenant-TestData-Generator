@@ -35,13 +35,17 @@ I prefer REST CONSOLE [Google crome plugin] (https://chrome.google.com/webstore/
 URL used to generate data:
 
 Need to call api in sequence given below to generate data, as each entry is dependent on previous
-
+//Create activities
+POST: /createActivities
+//Create roles
+POST: /createRoles
+//Create admin
 POST: /createAdmin
-
+//Create tenants
 POST: /createTenants
-
+//Create temant admins
 POST: /createTenantAdmins
-
+//Create users
 POST: /createUsers
 
 
